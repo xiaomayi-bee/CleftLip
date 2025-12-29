@@ -1,0 +1,765 @@
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos 
+                ORDER BY upload_time DESC
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos 
+                ORDER BY upload_time DESC
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos 
+                ORDER BY upload_time DESC
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos 
+                ORDER BY upload_time DESC
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos 
+                ORDER BY upload_time DESC
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos 
+                ORDER BY upload_time DESC
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos 
+                ORDER BY upload_time DESC
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos 
+                ORDER BY upload_time DESC
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos 
+                ORDER BY upload_time DESC
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos 
+                ORDER BY upload_time DESC
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos 
+                ORDER BY upload_time DESC
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos 
+                ORDER BY upload_time DESC
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos 
+                ORDER BY upload_time DESC
+查询结果数量：6
+查询结果：Array
+(
+    [0] => Array
+        (
+            [photo_id] => 1
+            [surgery_times] => 1
+            [annotation_status] => 1
+            [direction] => 侧面 (2)
+            [save_path] => ./surgery-photos/6958f9cd.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [1] => Array
+        (
+            [photo_id] => 2
+            [surgery_times] => 1
+            [annotation_status] => 1
+            [direction] => 侧面
+            [save_path] => ./surgery-photos/d3c4b4fc.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [2] => Array
+        (
+            [photo_id] => 3
+            [surgery_times] => 1
+            [annotation_status] => 1
+            [direction] => 正面
+            [save_path] => ./surgery-photos/a814fdc7.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [3] => Array
+        (
+            [photo_id] => 4
+            [surgery_times] => 2
+            [annotation_status] => 0
+            [direction] => 侧面
+            [save_path] => ./surgery-photos/26a5d4b3.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [4] => Array
+        (
+            [photo_id] => 5
+            [surgery_times] => 2
+            [annotation_status] => 1
+            [direction] => 侧面
+            [save_path] => ./surgery-photos/ed589134.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [5] => Array
+        (
+            [photo_id] => 6
+            [surgery_times] => 3
+            [annotation_status] => 0
+            [direction] => 正面
+            [save_path] => ./surgery-photos/d16c2f75.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+)
+
+
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos 
+                ORDER BY upload_time DESC
+查询结果数量：6
+查询结果：Array
+(
+    [0] => Array
+        (
+            [photo_id] => 1
+            [surgery_times] => 1
+            [annotation_status] => 1
+            [direction] => 侧面 (2)
+            [save_path] => ./surgery-photos/6958f9cd.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [1] => Array
+        (
+            [photo_id] => 2
+            [surgery_times] => 1
+            [annotation_status] => 1
+            [direction] => 侧面
+            [save_path] => ./surgery-photos/d3c4b4fc.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [2] => Array
+        (
+            [photo_id] => 3
+            [surgery_times] => 1
+            [annotation_status] => 1
+            [direction] => 正面
+            [save_path] => ./surgery-photos/a814fdc7.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [3] => Array
+        (
+            [photo_id] => 4
+            [surgery_times] => 2
+            [annotation_status] => 0
+            [direction] => 侧面
+            [save_path] => ./surgery-photos/26a5d4b3.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [4] => Array
+        (
+            [photo_id] => 5
+            [surgery_times] => 2
+            [annotation_status] => 1
+            [direction] => 侧面
+            [save_path] => ./surgery-photos/ed589134.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [5] => Array
+        (
+            [photo_id] => 6
+            [surgery_times] => 3
+            [annotation_status] => 0
+            [direction] => 正面
+            [save_path] => ./surgery-photos/d16c2f75.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+)
+
+
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos 
+                ORDER BY upload_time DESC
+查询结果数量：6
+查询结果：Array
+(
+    [0] => Array
+        (
+            [photo_id] => 1
+            [surgery_times] => 1
+            [annotation_status] => 1
+            [direction] => 侧面 (2)
+            [save_path] => ./surgery-photos/6958f9cd.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [1] => Array
+        (
+            [photo_id] => 2
+            [surgery_times] => 1
+            [annotation_status] => 1
+            [direction] => 侧面
+            [save_path] => ./surgery-photos/d3c4b4fc.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [2] => Array
+        (
+            [photo_id] => 3
+            [surgery_times] => 1
+            [annotation_status] => 1
+            [direction] => 正面
+            [save_path] => ./surgery-photos/a814fdc7.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [3] => Array
+        (
+            [photo_id] => 4
+            [surgery_times] => 2
+            [annotation_status] => 0
+            [direction] => 侧面
+            [save_path] => ./surgery-photos/26a5d4b3.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [4] => Array
+        (
+            [photo_id] => 5
+            [surgery_times] => 2
+            [annotation_status] => 1
+            [direction] => 侧面
+            [save_path] => ./surgery-photos/ed589134.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [5] => Array
+        (
+            [photo_id] => 6
+            [surgery_times] => 3
+            [annotation_status] => 0
+            [direction] => 正面
+            [save_path] => ./surgery-photos/d16c2f75.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+)
+
+
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos 
+                ORDER BY upload_time DESC
+查询结果数量：6
+查询结果：Array
+(
+    [0] => Array
+        (
+            [photo_id] => 1
+            [surgery_times] => 1
+            [annotation_status] => 1
+            [direction] => 侧面 (2)
+            [save_path] => ./surgery-photos/6958f9cd.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [1] => Array
+        (
+            [photo_id] => 2
+            [surgery_times] => 1
+            [annotation_status] => 1
+            [direction] => 侧面
+            [save_path] => ./surgery-photos/d3c4b4fc.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [2] => Array
+        (
+            [photo_id] => 3
+            [surgery_times] => 1
+            [annotation_status] => 1
+            [direction] => 正面
+            [save_path] => ./surgery-photos/a814fdc7.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [3] => Array
+        (
+            [photo_id] => 4
+            [surgery_times] => 2
+            [annotation_status] => 0
+            [direction] => 侧面
+            [save_path] => ./surgery-photos/26a5d4b3.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [4] => Array
+        (
+            [photo_id] => 5
+            [surgery_times] => 2
+            [annotation_status] => 1
+            [direction] => 侧面
+            [save_path] => ./surgery-photos/ed589134.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [5] => Array
+        (
+            [photo_id] => 6
+            [surgery_times] => 3
+            [annotation_status] => 0
+            [direction] => 正面
+            [save_path] => ./surgery-photos/d16c2f75.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+)
+
+
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos 
+                ORDER BY upload_time DESC
+查询结果数量：6
+查询结果：Array
+(
+    [0] => Array
+        (
+            [photo_id] => 1
+            [surgery_times] => 1
+            [annotation_status] => 1
+            [direction] => 侧面 (2)
+            [save_path] => ./surgery-photos/6958f9cd.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [1] => Array
+        (
+            [photo_id] => 2
+            [surgery_times] => 1
+            [annotation_status] => 1
+            [direction] => 侧面
+            [save_path] => ./surgery-photos/d3c4b4fc.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [2] => Array
+        (
+            [photo_id] => 3
+            [surgery_times] => 1
+            [annotation_status] => 1
+            [direction] => 正面
+            [save_path] => ./surgery-photos/a814fdc7.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [3] => Array
+        (
+            [photo_id] => 4
+            [surgery_times] => 2
+            [annotation_status] => 0
+            [direction] => 侧面
+            [save_path] => ./surgery-photos/26a5d4b3.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [4] => Array
+        (
+            [photo_id] => 5
+            [surgery_times] => 2
+            [annotation_status] => 1
+            [direction] => 侧面
+            [save_path] => ./surgery-photos/ed589134.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [5] => Array
+        (
+            [photo_id] => 6
+            [surgery_times] => 3
+            [annotation_status] => 0
+            [direction] => 正面
+            [save_path] => ./surgery-photos/d16c2f75.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+)
+
+
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos 
+                ORDER BY upload_time DESC
+查询结果数量：6
+查询结果：Array
+(
+    [0] => Array
+        (
+            [photo_id] => 1
+            [surgery_times] => 1
+            [annotation_status] => 1
+            [direction] => 侧面 (2)
+            [save_path] => ./surgery-photos/6958f9cd.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [1] => Array
+        (
+            [photo_id] => 2
+            [surgery_times] => 1
+            [annotation_status] => 1
+            [direction] => 侧面
+            [save_path] => ./surgery-photos/d3c4b4fc.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [2] => Array
+        (
+            [photo_id] => 3
+            [surgery_times] => 1
+            [annotation_status] => 1
+            [direction] => 正面
+            [save_path] => ./surgery-photos/a814fdc7.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [3] => Array
+        (
+            [photo_id] => 4
+            [surgery_times] => 2
+            [annotation_status] => 0
+            [direction] => 侧面
+            [save_path] => ./surgery-photos/26a5d4b3.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [4] => Array
+        (
+            [photo_id] => 5
+            [surgery_times] => 2
+            [annotation_status] => 1
+            [direction] => 侧面
+            [save_path] => ./surgery-photos/ed589134.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [5] => Array
+        (
+            [photo_id] => 6
+            [surgery_times] => 3
+            [annotation_status] => 0
+            [direction] => 正面
+            [save_path] => ./surgery-photos/d16c2f75.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+)
+
+
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos 
+                ORDER BY upload_time DESC
+查询结果数量：6
+查询结果：Array
+(
+    [0] => Array
+        (
+            [photo_id] => 1
+            [surgery_times] => 1
+            [annotation_status] => 1
+            [direction] => 侧面 (2)
+            [save_path] => ./surgery-photos/6958f9cd.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [1] => Array
+        (
+            [photo_id] => 2
+            [surgery_times] => 1
+            [annotation_status] => 1
+            [direction] => 侧面
+            [save_path] => ./surgery-photos/d3c4b4fc.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [2] => Array
+        (
+            [photo_id] => 3
+            [surgery_times] => 1
+            [annotation_status] => 1
+            [direction] => 正面
+            [save_path] => ./surgery-photos/a814fdc7.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [3] => Array
+        (
+            [photo_id] => 4
+            [surgery_times] => 2
+            [annotation_status] => 0
+            [direction] => 侧面
+            [save_path] => ./surgery-photos/26a5d4b3.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [4] => Array
+        (
+            [photo_id] => 5
+            [surgery_times] => 2
+            [annotation_status] => 1
+            [direction] => 侧面
+            [save_path] => ./surgery-photos/ed589134.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [5] => Array
+        (
+            [photo_id] => 6
+            [surgery_times] => 3
+            [annotation_status] => 0
+            [direction] => 正面
+            [save_path] => ./surgery-photos/d16c2f75.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+)
+
+
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos 
+                ORDER BY upload_time DESC
+查询结果数量：6
+查询结果：Array
+(
+    [0] => Array
+        (
+            [photo_id] => 1
+            [surgery_times] => 1
+            [annotation_status] => 1
+            [direction] => 侧面 (2)
+            [save_path] => ./surgery-photos/6958f9cd.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [1] => Array
+        (
+            [photo_id] => 2
+            [surgery_times] => 1
+            [annotation_status] => 1
+            [direction] => 侧面
+            [save_path] => ./surgery-photos/d3c4b4fc.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [2] => Array
+        (
+            [photo_id] => 3
+            [surgery_times] => 1
+            [annotation_status] => 1
+            [direction] => 正面
+            [save_path] => ./surgery-photos/a814fdc7.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [3] => Array
+        (
+            [photo_id] => 4
+            [surgery_times] => 2
+            [annotation_status] => 0
+            [direction] => 侧面
+            [save_path] => ./surgery-photos/26a5d4b3.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [4] => Array
+        (
+            [photo_id] => 5
+            [surgery_times] => 2
+            [annotation_status] => 1
+            [direction] => 侧面
+            [save_path] => ./surgery-photos/ed589134.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [5] => Array
+        (
+            [photo_id] => 6
+            [surgery_times] => 3
+            [annotation_status] => 0
+            [direction] => 正面
+            [save_path] => ./surgery-photos/d16c2f75.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+)
+
+
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos 
+                ORDER BY upload_time DESC
+查询结果数量：6
+查询结果：Array
+(
+    [0] => Array
+        (
+            [photo_id] => 1
+            [surgery_times] => 1
+            [annotation_status] => 1
+            [direction] => 侧面 (2)
+            [save_path] => ./surgery-photos/6958f9cd.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [1] => Array
+        (
+            [photo_id] => 2
+            [surgery_times] => 1
+            [annotation_status] => 1
+            [direction] => 侧面
+            [save_path] => ./surgery-photos/d3c4b4fc.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [2] => Array
+        (
+            [photo_id] => 3
+            [surgery_times] => 1
+            [annotation_status] => 1
+            [direction] => 正面
+            [save_path] => ./surgery-photos/a814fdc7.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [3] => Array
+        (
+            [photo_id] => 4
+            [surgery_times] => 2
+            [annotation_status] => 0
+            [direction] => 侧面
+            [save_path] => ./surgery-photos/26a5d4b3.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [4] => Array
+        (
+            [photo_id] => 5
+            [surgery_times] => 2
+            [annotation_status] => 1
+            [direction] => 侧面
+            [save_path] => ./surgery-photos/ed589134.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+    [5] => Array
+        (
+            [photo_id] => 6
+            [surgery_times] => 3
+            [annotation_status] => 0
+            [direction] => 正面
+            [save_path] => ./surgery-photos/d16c2f75.jpg
+            [upload_time] => 2025-12-19 01:10:03
+        )
+
+)
+
+
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos WHERE 1=1 AND surgery_times = :surgery_times AND direction LIKE :direction ORDER BY upload_time DESC 
+参数：Array
+(
+    [:surgery_times] => 1
+    [:direction] => %左侧%
+)
+
+符合条件的照片数量：0
+
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos WHERE 1=1 ORDER BY upload_time DESC 
+参数：Array
+(
+)
+
+符合条件的照片数量：6
+
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos WHERE 1=1 AND surgery_times = :surgery_times AND direction LIKE :direction ORDER BY upload_time DESC 
+参数：Array
+(
+    [:surgery_times] => 1
+    [:direction] => %正面%
+)
+
+符合条件的照片数量：1
+
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos WHERE 1=1 AND surgery_times = :surgery_times AND annotation_status = :annotation_status AND direction LIKE :direction ORDER BY upload_time DESC 
+参数：Array
+(
+    [:surgery_times] => 1
+    [:annotation_status] => 0
+    [:direction] => %正面%
+)
+
+符合条件的照片数量：0
+
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos WHERE 1=1 AND surgery_times = :surgery_times AND annotation_status = :annotation_status AND direction LIKE :direction ORDER BY upload_time DESC 
+参数：Array
+(
+    [:surgery_times] => 1
+    [:annotation_status] => 1
+    [:direction] => %正面%
+)
+
+符合条件的照片数量：1
+
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos WHERE 1=1 ORDER BY upload_time DESC 
+参数：Array
+(
+)
+
+符合条件的照片数量：6
+
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos WHERE 1=1 AND surgery_times = :surgery_times AND direction LIKE :direction ORDER BY upload_time DESC 
+参数：Array
+(
+    [:surgery_times] => 1
+    [:direction] => %正面%
+)
+
+符合条件的照片数量：1
+
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos WHERE 1=1 ORDER BY upload_time DESC 
+参数：Array
+(
+)
+
+符合条件的照片数量：6
+
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos WHERE 1=1 ORDER BY upload_time DESC 
+参数：Array
+(
+)
+
+符合条件的照片数量：6
+
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos WHERE 1=1 ORDER BY upload_time DESC 
+参数：Array
+(
+)
+
+符合条件的照片数量：6
+
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos WHERE 1=1 ORDER BY upload_time DESC 
+参数：Array
+(
+)
+
+符合条件的照片数量：6
+
+执行SQL：SELECT photo_id, surgery_times, annotation_status, direction, save_path, upload_time 
+                FROM surgery_photos WHERE 1=1 ORDER BY upload_time DESC 
+参数：Array
+(
+)
+
+符合条件的照片数量：6
+

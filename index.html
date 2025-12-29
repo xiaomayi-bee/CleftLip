@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>唇腭裂标注系统</title>
+    <style>
+        /* 全局样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", "PingFang SC", sans-serif;
+        }
+
+        /* 高级背景样式 */
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f0f4ff 0%, #d9e2ff 100%);
+            position: relative;
+            padding: 40px 20px;
+            overflow-x: hidden;
+        }
+
+        /* 背景装饰元素 */
+        body::before, body::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(52, 152, 219, 0.08);
+            z-index: 0;
+        }
+        body::before {
+            width: 600px;
+            height: 600px;
+            top: -200px;
+            right: -200px;
+        }
+        body::after {
+            width: 400px;
+            height: 400px;
+            bottom: -150px;
+            left: -150px;
+        }
+
+        /* 按钮栏样式 */
+        .button-bar {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            padding: 16px 24px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        /* 通用按钮样式 */
+        .btn {
+            border: none;
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(90deg, #3498db, #67b7e1);
+            color: white;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+            flex-shrink: 0;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(52, 152, 219, 0.25);
+            background: linear-gradient(90deg, #2980b9, #56a8d4);
+        }
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: 0 3px 8px rgba(52, 152, 219, 0.2);
+        }
+
+        /* 关键点标记按钮特殊样式 */
+        .annotation-btn {
+            background: linear-gradient(90deg, #2ecc71, #58d68d);
+            box-shadow: 0 4px 12px rgba(46, 204, 113, 0.2);
+        }
+        .annotation-btn:hover {
+            background: linear-gradient(90deg, #27ae60, #45b97c);
+            box-shadow: 0 6px 16px rgba(46, 204, 113, 0.25);
+        }
+
+        /* 内容容器样式 */
+        .content-container {
+            margin-top: 40px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            padding: 32px;
+            min-height: 400px;
+            max-width: 1200px;
+            margin: 40px auto 0;
+            position: relative;
+            z-index: 1;
+            display: none;
+        }
+
+        /* 文件列表样式 */
+        #fileList {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .file-item {
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: background 0.2s ease;
+        }
+        .file-item:hover {
+            background: #e9ecef;
+        }
+        .file-preview-link {
+            color: #3498db;
+            cursor: pointer;
+            text-decoration: underline;
+            margin-left: auto;
+        }
+        .file-preview-link:hover {
+            color: #2980b9;
+        }
+        .file-info {
+            color: #6c757d;
+            font-size: 14px;
+        }
+
+        /* 图片预览弹窗样式 */
+        .preview-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            padding: 20px;
+        }
+        .preview-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+        .preview-img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+        }
+        .preview-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 56px;
+            height: 56px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(8px);
+        }
+        .preview-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+        .prev-btn {
+            left: -70px;
+        }
+        .next-btn {
+            right: -70px;
+        }
+        .close-btn {
+            position: absolute;
+            top: -25px;
+            right: -25px;
+            width: 48px;
+            height: 48px;
+            background: #ff4d4d;
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            backdrop-filter: blur(8px);
+        }
+        .close-btn:hover {
+            background: #ff3333;
+        }
+        .preview-info {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            backdrop-filter: blur(8px);
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        /* 上传进度提示 */
+        #uploadStatus {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #28a745;
+            text-align: center;
+        }
+
+        /* 隐藏的文件上传控件 */
+        #hiddenFileInput {
+            display: none;
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 768px) {
+            .button-bar {
+                gap: 10px;
+                padding: 12px 16px;
+            }
+            .btn {
+                padding: 12px 24px;
+                font-size: 14px;
+                width: 100%;
+                max-width: 200px;
+            }
+            .preview-btn {
+                width: 48px;
+                height: 48px;
+                font-size: 20px;
+            }
+            .prev-btn {
+                left: -50px;
+            }
+            .next-btn {
+                right: -50px;
+            }
+            .content-container {
+                padding: 20px;
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 功能按钮栏 -->
+    <div class="button-bar">
+        <button class="btn" id="uploadFileBtn">上传图片</button>
+        <button class="btn annotation-btn" onclick="openAnnotationPage()">关键点标记</button>
+        <button class="btn" id="reviewBtn" onclick="openReviewPage()">进入审核</button>
+        <button class="btn" onclick="logout()">退出登录</button>
+        <button class="btn" onclick="getUploadedFiles()">查看上传文件</button>
+    </div>
+
+    <!-- 隐藏的文件上传输入框 -->
+    <input type="file" id="hiddenFileInput" webkitdirectory multiple accept="image/jpg,image/png,image/jpeg">
+
+    <!-- 内容展示容器 -->
+    <div class="content-container" id="contentContainer">
+        <h2 id="contentTitle" style="margin-bottom: 20px; color: #2c3e50;">已上传文件列表</h2>
+        <div id="uploadStatus"></div>
+        <div id="fileList"></div>
+    </div>
+
+    <!-- 图片预览弹窗 -->
+    <div class="preview-modal" id="previewModal">
+        <div class="preview-content">
+            <button class="close-btn" onclick="closePreview()">×</button>
+            <button class="preview-btn prev-btn" onclick="prevImage()">←</button>
+            <img src="" alt="预览图片" class="preview-img" id="previewImg">
+            <button class="preview-btn next-btn" onclick="nextImage()">→</button>
+            <div class="preview-info" id="previewInfo">1/1 - 文件名.jpg</div>
+        </div>
+    </div>
+
+    <script>
+        // 全局变量
+        let uploadedFiles = [];
+        let currentPreviewIndex = 0;
+
+        // ========== 登录状态验证（必须放在最顶部） ==========
+        function getCookie(name) {
+            const cookies = document.cookie.split('; ');
+            for (let cookie of cookies) {
+                const [key, value] = cookie.split('=');
+                if (key === name) return value;
+            }
+            return null;
+        }
+
+        // 验证登录状态，未登录则跳转
+        const isLogin = getCookie('isLogin');
+        if (!isLogin || isLogin !== '1') {
+            alert('请先登录后再访问！');
+            window.location.href = 'login.html';
+            throw new Error('未登录，已跳转至登录页');
+        }
+
+        // ========== 页面初始化 ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            // 绑定文件上传按钮事件
+            document.getElementById('uploadFileBtn').addEventListener('click', function() {
+                document.getElementById('hiddenFileInput').click();
+            });
+
+            // 绑定文件选择事件
+            document.getElementById('hiddenFileInput').addEventListener('change', handleFileUpload);
+
+            // 绑定审核页面跳转事件
+            document.getElementById('reviewBtn').addEventListener('click', function() {
+                window.open('http://47.99.201.53:3000', '_blank');
+            });
+
+            // 点击预览弹窗遮罩关闭
+            document.getElementById('previewModal').addEventListener('click', function(e) {
+                if (e.target === this) closePreview();
+            });
+
+            // 键盘控制预览
+            document.addEventListener('keydown', function(e) {
+                const modal = document.getElementById('previewModal');
+                if (modal.style.display === 'flex') {
+                    switch(e.key) {
+                        case 'ArrowLeft': prevImage(); break;
+                        case 'ArrowRight': nextImage(); break;
+                        case 'Escape': closePreview(); break;
+                    }
+                }
+            });
+        });
+
+        // ========== 文件上传功能 ==========
+        function handleFileUpload(e) {
+            const files = e.target.files;
+            if (!files || files.length === 0) return;
+
+            // 显示内容容器
+            const contentContainer = document.getElementById('contentContainer');
+            const uploadStatus = document.getElementById('uploadStatus');
+            contentContainer.style.display = 'block';
+            document.getElementById('contentTitle').textContent = '文件上传中...';
+            uploadStatus.textContent = `准备上传 ${files.length} 个文件，请稍候...`;
+            uploadStatus.style.color = '#17a2b8';
+
+            // 逐个上传文件
+            let uploadedCount = 0;
+            const totalFiles = files.length;
+
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const relativePath = e.target.files[i].webkitRelativePath || file.name;
+
+                // 创建FormData
+                const formData = new FormData();
+                formData.append('uploadFile', file);
+                formData.append('relativePath', relativePath);
+
+                // 发送上传请求
+                fetch('upload.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.text())
+                .then(result => {
+                    uploadedCount++;
+                    uploadStatus.textContent = `已上传 ${uploadedCount}/${totalFiles} 个文件 - ${result}`;
+                    
+                    // 全部上传完成
+                    if (uploadedCount === totalFiles) {
+                        uploadStatus.textContent = `上传完成！共上传 ${totalFiles} 个文件`;
+                        uploadStatus.style.color = '#28a745';
+                        // 上传完成后自动刷新文件列表
+                        setTimeout(getUploadedFiles, 1000);
+                    }
+                })
+                .catch(error => {
+                    uploadedCount++;
+                    uploadStatus.textContent = `上传失败 ${uploadedCount}/${totalFiles} 个文件 - ${error.message}`;
+                    uploadStatus.style.color = '#dc3545';
+                });
+            }
+        }
+
+        // ========== 获取已上传文件列表 ==========
+        function getUploadedFiles() {
+            const contentContainer = document.getElementById('contentContainer');
+            const fileList = document.getElementById('fileList');
+            const uploadStatus = document.getElementById('uploadStatus');
+
+            // 显示内容容器
+            contentContainer.style.display = 'block';
+            document.getElementById('contentTitle').textContent = '已上传文件列表';
+            uploadStatus.textContent = '';
+
+            // 请求文件列表
+            fetch('upload.php?action=list')
+                .then(response => {
+                    if (!response.ok) throw new Error('网络请求失败');
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.code === 200) {
+                        uploadedFiles = data.data;
+                        fileList.innerHTML = '';
+
+                        if (data.total === 0) {
+                            fileList.innerHTML = '<div style="text-align: center; color: #6c757d; padding: 20px;">暂无已上传文件</div>';
+                            return;
+                        }
+
+                        // 渲染文件列表
+                        uploadedFiles.forEach((file, index) => {
+                            const fileItem = document.createElement('div');
+                            fileItem.className = 'file-item';
+                            fileItem.innerHTML = `
+                                <span style="font-weight: 500;">📄 ${file.name}</span>
+                                <span class="file-info">${file.size_formatted}</span>
+                                <span class="file-info">${file.modify_time}</span>
+                                <span class="file-preview-link" onclick="openPreview(${index})">预览</span>
+                            `;
+                            fileList.appendChild(fileItem);
+                        });
+                    } else {
+                        fileList.innerHTML = `<div style="color: #dc3545; padding: 20px;">获取失败：${data.msg}</div>`;
+                    }
+                })
+                .catch(error => {
+                    fileList.innerHTML = `<div style="color: #dc3545; padding: 20px;">获取失败：${error.message}</div>`;
+                    console.error('获取文件列表错误：', error);
+                });
+        }
+
+        // ========== 图片预览功能 ==========
+        function openPreview(index) {
+            if (uploadedFiles.length === 0) return;
+            
+            currentPreviewIndex = Math.max(0, Math.min(index, uploadedFiles.length - 1));
+            const file = uploadedFiles[currentPreviewIndex];
+            
+            const previewImg = document.getElementById('previewImg');
+            const previewInfo = document.getElementById('previewInfo');
+            const previewModal = document.getElementById('previewModal');
+            
+            // 设置预览内容
+            previewImg.src = `uploads/未标记病例/${file.relative_path}`;
+            previewInfo.textContent = `${currentPreviewIndex + 1}/${uploadedFiles.length} - ${file.name}`;
+            
+            // 显示弹窗
+            previewModal.style.display = 'flex';
+        }
+
+        function closePreview() {
+            document.getElementById('previewModal').style.display = 'none';
+        }
+
+        function prevImage() {
+            currentPreviewIndex = (currentPreviewIndex - 1 + uploadedFiles.length) % uploadedFiles.length;
+            openPreview(currentPreviewIndex);
+        }
+
+        function nextImage() {
+            currentPreviewIndex = (currentPreviewIndex + 1) % uploadedFiles.length;
+            openPreview(currentPreviewIndex);
+        }
+
+        // ========== 其他功能 ==========
+        // 关键点标记页面跳转
+        function openAnnotationPage() {
+            window.open('/point-annotation/index.html', '_blank');
+        }
+        // 进入审核
+        function openReviewPage() {
+            window.open('http://47.99.201.53:3000', '_blank');
+        }
+
+        // 退出登录
+        function logout() {
+            if (confirm('确定要退出登录吗？')) {
+                // 清除登录Cookie
+                document.cookie = 'isLogin=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                document.cookie = 'username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                window.location.href = 'login.html';
+            }
+        }
+    </script>
+</body>
+</html>

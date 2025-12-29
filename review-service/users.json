@@ -1,0 +1,25 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "admin123",
+      "name": "管理员",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "username": "auditor1",
+      "password": "audit123",
+      "name": "审核员1",
+      "role": "auditor"
+    },
+    {
+      "id": 3,
+      "username": "auditor2",
+      "password": "audit123",
+      "name": "审核员2",
+      "role": "auditor"
+    }
+  ]
+}

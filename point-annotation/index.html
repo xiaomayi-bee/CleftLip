@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>医学图像标点标注系统</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- 项目使用固定的标点名称列表，不需要xlsx库 -->
+    
+</head>
+<body>
+    <div class="app-container">
+        <!-- 顶部菜单栏 -->
+        <div class="menu-bar">
+            <div class="menu-left">
+                <h1>医学图像标点标注系统</h1>
+            </div>
+            <div class="menu-right">
+                <button id="openImageBtn" class="btn btn-primary">打开图像</button>
+                <button id="pointModeBtn" class="btn btn-secondary">标点模式</button>
+                <button id="saveFilesBtn" class="btn btn-success">保存文件</button>
+                <button id="exportBtn" class="btn btn-info">导出JSON</button>
+                <button id="importBtn" class="btn btn-warning">导入标注</button>
+                <div class="edit-buttons">
+                    <button id="undoBtn" class="btn btn-secondary" title="撤销 (Ctrl+Z)">撤销</button>
+                    <button id="redoBtn" class="btn btn-secondary" title="重做 (Ctrl+Y)">重做</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 主内容区域 -->
+        <div class="main-content">
+            <!-- 左侧图像标注区域 -->
+            <div class="annotation-area">
+                <div class="image-container-wrapper">
+                    <div class="image-container">
+                        <canvas id="imageCanvas" class="image-canvas"></canvas>
+                        <div class="canvas-overlay">
+                            <div class="zoom-controls">
+                                <button id="zoomOutBtn" class="zoom-btn">-</button>
+                                <div class="zoom-info">缩放: <span id="zoomLevel">100</span>%</div>
+                                <button id="zoomInBtn" class="zoom-btn">+</button>
+                                <button id="zoomResetBtn" class="zoom-btn">重置</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="status-bar">
+                    <span id="coordinates">坐标: (0, 0)</span>
+                    <span id="selectedPoint">当前选择: 无</span>
+                </div>
+            </div>
+
+            <!-- 右侧控制面板 -->
+            <div class="control-panel">
+                <!-- 病人信息 -->
+                <div class="panel-section">
+                    <h3>病人信息</h3>
+                    <div class="info-form">
+                        <div class="form-group">
+                            <label for="patientId">病历号:</label>
+                            <input type="text" id="patientId" placeholder="请输入病人病历号" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phase">拍摄阶段:</label>
+                            <select id="phase">
+                            <option value="幼儿期术前">幼儿期术前</option>
+                            <option value="幼儿期术后(未拆线)">幼儿期术中(未拆线)</option>
+                            <option value="幼儿期术后(已拆线)">幼儿期术后(已拆线)</option>
+                            <option value="儿童期术前">儿童期术前</option>
+                            <option value="儿童期术后(未拆线)">儿童期术后(未拆线)</option>
+                            <option value="儿童期术后(已拆线)">儿童期术后(已拆线)</option>
+                            <option value="成人(青年)期术前">成人(青年)期术前</option>
+                            <option value="成人(青年)期术后(未拆线)">成人(青年)期术后(未拆线)</option>
+                            <option value="成人(青年)期术后(已拆线)">成人(青年)期术后(已拆线)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="angle">拍摄角度:</label>
+                            <select id="angle">
+                                <option value="正面">正面</option>
+                                <option value="左侧面">左侧面</option>
+                                <option value="右侧面">右侧面</option>
+                                <option value="仰视">仰视</option>
+                            </select>
+                        </div>
+                        <button id="saveInfoBtn" class="btn btn-primary btn-sm">保存信息</button>
+                    </div>
+                </div>
+
+                <!-- 标点显示模式 -->
+                <div class="panel-section">
+                    <h3>标点显示模式</h3>
+                    <div class="display-mode-controls">
+                        <button id="displayFullNameBtn" class="btn btn-primary btn-sm display-mode-btn active">显示全名</button>
+                        <button id="displayNumberBtn" class="btn btn-secondary btn-sm display-mode-btn">显示序号</button>
+                        <button id="displayPointOnlyBtn" class="btn btn-secondary btn-sm display-mode-btn">只显示点</button>
+                    </div>
+                </div>
+
+                <!-- 标点任务列表 -->
+                <div class="panel-section">
+                    <h3>标点任务列表</h3>
+                    <div class="points-table-container">
+                        <table id="pointsTable" class="points-table">
+                            <thead>
+                                <tr>
+                                    <th>标点名称</th>
+                                    <th>存在</th>
+                                    <th>X坐标</th>
+                                    <th>Y坐标</th>
+                                </tr>
+                            </thead>
+                            <tbody id="pointsTableBody">
+                                <!-- 动态生成的标点行 -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 图像信息输入弹窗 -->
+    <div id="imageInfoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>图像信息录入</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="modalPatientId">病历号:</label>
+                    <input type="text" id="modalPatientId" placeholder="请输入病人病历号" required>
+                </div>
+                <div class="form-group">
+                    <label for="modalPhase">拍摄阶段:</label>
+                    <select id="modalPhase">
+                        <option value="幼儿期术前">幼儿期术前</option>
+                        <option value="幼儿期术后(未拆线)">幼儿期术中(未拆线)</option>
+                        <option value="幼儿期术后(已拆线)">幼儿期术后(已拆线)</option>
+                        <option value="儿童期术前">儿童期术前</option>
+                        <option value="儿童期术后(未拆线)">儿童期术后(未拆线)</option>
+                        <option value="儿童期术后(已拆线)">儿童期术后(已拆线)</option>
+                        <option value="成人(青年)期术前">成人(青年)期术前</option>
+                        <option value="成人(青年)期术后(未拆线)">成人(青年)期术后(未拆线)</option>
+                        <option value="成人(青年)期术后(已拆线)">成人(青年)期术后(已拆线)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="modalAngle">拍摄角度:</label>
+                    <select id="modalAngle">
+                        <option value="正面">正面</option>
+                        <option value="左侧面">左侧面</option>
+                        <option value="右侧面">右侧面</option>
+                        <option value="仰视">仰视</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="modalCancelBtn" class="btn btn-secondary">取消</button>
+                <button id="modalOkBtn" class="btn btn-primary">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 隐藏的文件输入 -->
+    <input type="file" id="fileInput" accept="image/*" style="display: none;">
+    <input type="file" id="excelInput" accept=".xlsx,.xls" style="display: none;">
+    <input type="file" id="jsonInput" accept=".json" style="display: none;">
+    <script src="script.js"></script>
+</body>
+</html>

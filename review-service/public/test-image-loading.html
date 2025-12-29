@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片加载测试</title>
+</head>
+<body>
+    <h1>图片加载测试</h1>
+    <div id="status">准备测试...</div>
+    <div id="imageContainer"></div>
+
+    <script>
+        const statusDiv = document.getElementById('status');
+        const imageContainer = document.getElementById('imageContainer');
+
+        function updateStatus(message) {
+            statusDiv.textContent = message;
+            console.log(message);
+        }
+
+        async function testImageLoading() {
+            try {
+                updateStatus('正在登录...');
+                
+                const loginResponse = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: 'admin',
+                        password: 'admin123'
+                    })
+                });
+
+                const loginData = await loginResponse.json();
+                if (!loginData.token) {
+                    throw new Error('登录失败');
+                }
+
+                updateStatus('登录成功，正在加载图片...');
+
+                const imageUrl = '/api/patients/P001/images/56988_%E6%88%90%E4%BA%BA(%E9%9D%92%E5%B9%B4)%E6%9C%9F%E6%9C%AF%E5%89%8D_%E4%BB%B0%E8%A7%86%20(1).JPG';
+                
+                const imageResponse = await fetch(imageUrl, {
+                    headers: {
+                        'Authorization': `Bearer ${loginData.token}`
+                    }
+                });
+
+                if (!imageResponse.ok) {
+                    throw new Error(`图片加载失败: HTTP ${imageResponse.status}`);
+                }
+
+                updateStatus('图片加载成功，正在显示...');
+                
+                const blob = await imageResponse.blob();
+                const objectUrl = URL.createObjectURL(blob);
+                
+                const img = document.createElement('img');
+                img.src = objectUrl;
+                img.style.maxWidth = '800px';
+                img.style.border = '2px solid #ccc';
+                
+                img.onload = function() {
+                    updateStatus(`图片显示成功！尺寸: ${img.naturalWidth}x${img.naturalHeight}`);
+                };
+                
+                img.onerror = function() {
+                    updateStatus('图片显示失败');
+                };
+                
+                imageContainer.appendChild(img);
+
+            } catch (error) {
+                updateStatus(`错误: ${error.message}`);
+                console.error(error);
+            }
+        }
+
+        testImageLoading();
+    </script>
+</body>
+</html>

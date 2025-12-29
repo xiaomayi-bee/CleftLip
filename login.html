@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录 - 唇腭裂标注系统</title>
+    <style>
+        /* 全局样式：浅蓝渐变背景（和原标注系统一致） */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", "PingFang SC", sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4eaf5 100%); /* 原系统同款浅蓝背景 */
+            padding: 20px;
+        }
+
+        /* 登录卡片：保持精致样式，适配浅蓝风格 */
+        .login-card {
+            width: 100%;
+            max-width: 400px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        /* 卡片头部：浅蓝渐变标题栏（和原系统按钮色一致） */
+        .card-header {
+            background: linear-gradient(90deg, #3498db, #67b7e1); /* 原系统上传按钮的浅蓝渐变 */
+            color: white;
+            padding: 24px;
+            text-align: center;
+        }
+        .card-header h1 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .card-header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* 表单区域 */
+        .card-body {
+            padding: 32px 24px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            color: #495057;
+            margin-bottom: 8px;
+        }
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: #3498db; /* 浅蓝聚焦色 */
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        /* 登录按钮：浅蓝渐变（和原系统按钮样式一致） */
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(90deg, #3498db, #67b7e1); /* 原系统同款浅蓝渐变 */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+        }
+        .login-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(52, 152, 219, 0.25);
+        }
+        .login-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 3px 8px rgba(52, 152, 219, 0.2);
+        }
+
+        /* 底部版权信息 */
+        .card-footer {
+            padding: 16px 24px;
+            text-align: center;
+            font-size: 12px;
+            color: #868e96;
+            border-top: 1px solid #f1f3f5;
+        }
+
+        /* 适配移动端 */
+        @media (max-width: 480px) {
+            .card-body {
+                padding: 24px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <div class="card-header">
+            <h1>唇腭裂标注系统</h1>
+            <p>请登录以继续</p>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="username">用户名</label>
+                <input type="text" id="username" class="form-control" placeholder="请输入用户名">
+            </div>
+            <div class="form-group">
+                <label for="password">密码</label>
+                <input type="password" id="password" class="form-control" placeholder="请输入密码">
+            </div>
+            <button class="login-btn" onclick="handleLogin()">登录</button>
+        </div>
+        <div class="card-footer">
+            © 2025 唇腭裂标注系统
+        </div>
+    </div>
+
+    <script>
+        // 正式用：对接后端接口登录
+// 登录逻辑（添加Cookie存储登录状态）
+function handleLogin() {
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value.trim();
+
+    if (!username || !password) {
+        alert('请输入用户名和密码');
+        return;
+    }
+    // 设置初始化账号：admin，密码：123456
+    const initUsername = 'admin';
+    const initPassword = '123456';
+
+    if (username !== initUsername || password !== initPassword) {
+        alert('用户名或密码错误！初始化账号：admin，密码：123456');
+        return;
+    }
+
+    // 1. 存储登录状态（Cookie，有效期1小时，路径为根目录，确保所有页面可访问）
+    const expires = new Date();
+    expires.setTime(expires.getTime() + 1 * 60 * 60 * 1000); // 1小时有效期
+    document.cookie = `isLogin=1; expires=${expires.toUTCString()}; path=/; SameSite=Lax`;
+    document.cookie = `username=${username}; expires=${expires.toUTCString()}; path=/; SameSite=Lax`;
+
+    // 2. 跳转到主页面
+    alert('登录成功！即将进入系统');
+    window.location.href = 'index.html'; // 替换为你的主页面路径
+}
+    </script>
+</body>
+</html>
